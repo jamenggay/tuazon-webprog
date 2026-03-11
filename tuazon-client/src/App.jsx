@@ -4,32 +4,23 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <header className='="App-header'>
+          <h1>Welcome to My React App!</h1>
+          <p>
+            Name: Jamaine Grace Tuazon <br />
+            Email: tuazonjm@students.national-u.edu.ph <br />
+            Section: INF231 <br />
+            Course Code: CTWEBPG <br />
+            <a href='https://github.com/jamenggay/tuazon-webprog' target="_blank">REACT WEBPROG REPOSITORY</a>
+          </p>
+        </header>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+  
     </>
-  )
+  );
 }
 
 export default App
