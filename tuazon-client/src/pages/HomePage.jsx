@@ -3,17 +3,19 @@ import Button from '../components/Button';
 const HomePage = () => {
     return (
         <div className="flex w-full flex-col gap-6">
-            <section className="border-y-2 border-zinc-900 bg-zinc-50 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+
+            {/* HERO */}
+            <section className="border-y border-[#C97B84] bg-[#F5EDE6] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
                 <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
                     <div>
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                            Hero Section
+                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C97B84]">
+                            Awareness
                         </p>
-                        <h1 className="max-w-xl text-3xl font-bold leading-tight text-zinc-900 sm:text-4xl">
-                            Welcome to Wireframe Studio Layout
+                        <h1 className="max-w-xl text-3xl font-bold leading-tight text-[#5A2A6E] sm:text-4xl">
+                            Raising Awareness on Female Genital Mutilation
                         </h1>
-                        <p className="mt-4 max-w-lg text-sm leading-7 text-zinc-600 sm:text-base">
-                            Discover the art of wireframing with a simple layout system for hero content, key numbers, and feature cards.
+                        <p className="mt-4 max-w-lg text-sm leading-7 text-[#2E2E2E] sm:text-base">
+                            Educating, empowering, and advocating for the protection of women and girls worldwide. Together, we can break the silence and promote change.
                         </p>
                         <div className="mt-6">
                             <Button to="/about" variant='primary'>
@@ -22,88 +24,108 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="rounded-3xl border-2 border-dashed border-zinc-300 bg-zinc-100 p-6">
-                        <div className="flex min-h-[65px] items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-20 w-20 rounded-full border-2 border-zinc-300 bg-zinc-100"/>
+                    <div className="rounded-3xl border border-[#D6C6E1] bg-[#D6C6E1] p-6">
+                        <div className="flex min-h-[65px] items-center justify-center rounded-[1.25rem] bg-[#F5EDE6]">
+                            <img src='/src/assets/images/hero.png' style={{width: "750px", height: "200px"}} />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="border-y-2 border-zinc-900 bg-zinc-50 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+            {/* KPI */}
+            <section className="border-y border-[#C97B84] bg-[#D6C6E1] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
                 <div className="mb-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                        KPI Section
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#5A2A6E]">
+                        Awareness Impact
                     </p>
-                    <h2 className="mt-2 text-2xl font-semibold text-zinc-900">Quick overview blocks</h2>
+                    <h2 className="mt-2 text-2xl font-semibold text-[#5A2A6E]">
+                        Global insights
+                    </h2>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <div className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-5">
-                        <p className="text-2xl font-bold text-zinc-900">12</p>
-                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                            Projects
+                    <div className="rounded-3xl border border-[#5A2A6E] bg-[#F5EDE6] p-5">
+                        <p className="text-2xl font-bold text-[#5A2A6E]">Over 230 Million</p>
+                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#2E2E2E]">
+                            Affected Women
                         </p>
                     </div>
-                    <div className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-5">
-                        <p className="text-2xl font-bold text-zinc-900">08</p>
-                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                            Sections
+                    <div className="rounded-3xl border border-[#5A2A6E] bg-[#F5EDE6] p-5">
+                        <p className="text-2xl font-bold text-[#5A2A6E]">Over 30</p>
+                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#2E2E2E]">
+                            Countries
                         </p>
                     </div>
-                    <div className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-5">
-                        <p className="text-2xl font-bold text-zinc-900">24</p>
-                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                            Screens
+                    <div className="rounded-3xl border border-[#5A2A6E] bg-[#F5EDE6] p-5">
+                        <p className="text-2xl font-bold text-[#5A2A6E]">4 Million</p>
+                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#2E2E2E]">
+                            At Risk Annually
                         </p>
                     </div>
-                    <div className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-5">
-                        <p className="text-2xl font-bold text-zinc-900">04</p>
-                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-zinc-500">
-                            Layouts
+                    <div className="rounded-3xl border border-[#5A2A6E] bg-[#F5EDE6] p-5">
+                        <p className="text-2xl font-bold text-[#5A2A6E]">1 in 3 Minors</p>
+                        <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-[#2E2E2E]">
+                            have experience
                         </p>
                     </div>
                 </div>
             </section>
 
-            <section className="border-y-2 border-zinc-900 bg-zinc-50 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+            {/* key topics */}
+            <section className="border-y border-[#C97B84] bg-[#F5EDE6] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
                 <div className="mb-6">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-zinc-500">
-                        Feature Cards
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#C97B84]">
+                        Learn More
                     </p>
-                    <h2 className="mt-2 text-2xl font-semibold text-zinc-900">Simple wireframe cards</h2>
+                    <h2 className="mt-2 text-2xl font-semibold text-[#5A2A6E]">
+                        Explore key topics
+                    </h2>
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-                        <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100"/>
+                    <article className="rounded-3xl border border-[#D6C6E1] bg-[#D6C6E1] p-4">
+                        <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-[#F5EDE6]">
+                           <img src='/src/assets/images/keytopic1.png' style={{width: "600px", height: "400px", borderRadius: "1.25rem" }}/>
                         </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900">Feature Card One</h3>
-                        <p className="mt-3 text-sm leading-6 text-zinc-600">
-                            A clean placeholder for title, short text, and action.
+                        <h3 className="mt-4 text-lg font-semibold text-[#5A2A6E]">
+                            What is FGM?
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-[#2E2E2E]">
+                            Understand the practice, its types, and its global impact.
                         </p>
-                        <Button className="mt-4" variant="primary">View More</Button>
+                        <Button className="mt-4" variant="primary">
+                            Learn More
+                        </Button>
                     </article>
-                    <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-                        <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100"/>
+
+                    <article className="rounded-3xl border border-[#D6C6E1] bg-[#D6C6E1] p-4">
+                        <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-[#F5EDE6]">
+                            <img src='/src/assets/images/keytopics2.jpeg' style={{width: "600px", height: "400px", borderRadius: "1.25rem" }}/>
                         </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900">Feature Card Two</h3>
-                        <p className="mt-3 text-sm leading-6 text-zinc-600">
-                            Balanced spacing keeps the card layout easy to scan.
+                        <h3 className="mt-4 text-lg font-semibold text-[#5A2A6E]">
+                            Health Effects
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-[#2E2E2E]">
+                            Learn about the physical and psychological consequences.
                         </p>
-                        <Button className="mt-4" variant="primary">View More</Button>
+                        <Button className="mt-4" variant="primary">
+                            Learn More
+                        </Button>
                     </article>
-                    <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-                        <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100"/>
+
+                    <article className="rounded-3xl border border-[#D6C6E1] bg-[#D6C6E1] p-4">
+                        <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-[#F5EDE6]">
+                            <img src='/src/assets/images/keytopic3.webp' style={{width: "600px", height: "400px", borderRadius: "1.25rem" }}/>
                         </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900">Feature Card Three</h3>
-                        <p className="mt-3 text-sm leading-6 text-zinc-600">
-                            Repeated blocks give the page a consistent wireframe rhythm.
+                        <h3 className="mt-4 text-lg font-semibold text-[#5A2A6E]">
+                            Take Action
+                        </h3>
+                        <p className="mt-3 text-sm leading-6 text-[#2E2E2E]">
+                            Discover ways you can help raise awareness and support change.
                         </p>
-                        <Button className="mt-4" variant="primary">View More</Button>
+                        <Button className="mt-4" variant="accent">
+                            Get Involved
+                        </Button>
                     </article>
                 </div>
             </section>
