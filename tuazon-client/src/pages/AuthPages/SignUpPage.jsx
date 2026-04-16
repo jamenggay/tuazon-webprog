@@ -18,7 +18,7 @@ const SignUpPage = () => {
       </p>
 
       {/* Form */}
-      <form className="mt-8 space-y-6">
+      <form className="mt-8 space-y-4">
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <label className="text-sm font-medium text-white">First Name</label>
@@ -83,24 +83,24 @@ const SignUpPage = () => {
         {/* Social Buttons */}
         <div className="grid gap-3 sm:grid-cols-2 mt-4">
           <a href="#" className="block">
-            <button className="w-full text-center hover:bg-[#d89cf5] transition-colors py-3 border flex items-center justify-center border-slate-200 rounded-[30px] text-white hover:border-slate-400 hover:text-white hover:shadow transition duration-150">
+            <button className="w-full text-sm text-center hover:bg-[#d89cf5] transition-colors py-3 border flex items-center justify-center border-slate-200 rounded-[30px] text-white hover:border-slate-400 hover:text-white hover:shadow transition duration-150">
               <img
                 src="/src/assets/icon/google-logo.png"
-                className="w-5 h-5 mr-2"
+                className="w-4 h-4 mr-2"
                 alt="Google Icon"
               />
-              <span className="text-white">Login with Google</span>
+              <span className="text-white">Sign up with Google</span>
             </button>
           </a>
 
           <a href="#" className="block">
-            <button className="w-full text-center  hover:bg-[#d89cf5] transition-colors py-3 border flex items-center justify-center border-slate-200 rounded-[30px] text-white hover:border-slate-400 hover:text-white hover:shadow transition duration-150">
+            <button className="w-full text-sm text-center  hover:bg-[#d89cf5] transition-colors py-3 border flex items-center justify-center border-slate-200 rounded-[30px] text-white hover:border-slate-400 hover:text-white hover:shadow transition duration-150">
               <img
                 src="/src/assets/icon/github-logo..png"
-                className="w-7 h-5 mr-2"
+                className="w-7 h-5 mr-1"
                 alt="Github Icon"
               />
-              <span className="text-white">Login with Github</span>
+              <span className="text-white">Sign up with Github</span>
             </button>
           </a>
         </div>
