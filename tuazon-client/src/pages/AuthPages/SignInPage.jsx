@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import Button from "../../components/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { login } from "../../utils/auth";
 
 const inputClasses =
   "mt-2 w-full rounded-2xl border border-[#D6C6E1] bg-white px-4 py-3 text-sm text-[#2E2E2E] outline-none transition placeholder:text-[#C97B84] focus:border-[#5A2A6E] focus:ring-2 focus:ring-[#5A2A6E]";
@@ -8,6 +9,46 @@ const actionButtonClassName =
   "w-full rounded-2xl py-3 text-[11px] font-semibold uppercase tracking-[0.2em]";
 
 const SignInPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    console.log("Form submitted with:", { email, password }); // Debug
+
+    // Validate inputs
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      setLoading(false);
+      return;
+    }
+
+    // Attempt login
+    const result = login(email, password);
+    console.log("Login result:", result); // Debug
+    console.log(
+      "localStorage auth state:",
+      localStorage.getItem("isAuthenticated"),
+    ); // Debug
+
+    if (result.success) {
+      // Redirect to dashboard after successful login
+      console.log("Login successful, redirecting..."); // Debug
+      setTimeout(() => {
+        navigate("/dashboard/");
+      }, 500);
+    } else {
+      setError(result.message);
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
@@ -18,7 +59,14 @@ const SignInPage = () => {
         across the site
       </p>
 
-      <form className="mt-8 space-y-5">
+      {/* Error Message */}
+      {error && (
+        <div className="mt-4 p-3 bg-red-900/30 border border-red-500/50 rounded-lg">
+          <p className="text-sm text-red-200">{error}</p>
+        </div>
+      )}
+
+      <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
         <div>
           <label
             htmlFor="signin-email"
@@ -31,6 +79,8 @@ const SignInPage = () => {
             type="email"
             placeholder="you@example.com"
             autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className={inputClasses}
           />
         </div>
@@ -47,6 +97,8 @@ const SignInPage = () => {
             type="password"
             placeholder="••••••••"
             autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className={inputClasses}
           />
         </div>
@@ -67,12 +119,17 @@ const SignInPage = () => {
           </button>
         </div>
 
-        <Button
+        <button
           type="submit"
-          className={`${actionButtonClassName} bg-[#F8E1FF] text-[#5A2A6E] hover:bg-[#d89cf5] transition-colors`}
+          disabled={loading}
+          className={`${actionButtonClassName} w-full rounded-2xl py-3 text-[11px] font-semibold uppercase tracking-[0.2em] ${
+            loading
+              ? "bg-gray-400 text-gray-600 cursor-not-allowed"
+              : "bg-[#F8E1FF] text-[#5A2A6E] hover:bg-[#d89cf5]"
+          } transition-colors`}
         >
-          Log In
-        </Button>
+          {loading ? "Logging In..." : "Log In"}
+        </button>
         {/* Social Buttons */}
         <div className="grid gap-3 sm:grid-cols-2 mt-4">
           <a href="#" className="block">
