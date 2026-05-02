@@ -2,8 +2,8 @@
 export const FAKE_USERS = [
   {
     id: 1,
-    email: "admin@example.com",
-    password: "admin123",
+    email: "jamaine@tuazon.com",
+    password: "Tuazon_04",
     name: "Admin User",
     role: "admin",
   },

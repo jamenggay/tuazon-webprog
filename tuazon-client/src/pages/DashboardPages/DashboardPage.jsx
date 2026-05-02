@@ -20,7 +20,7 @@ import {
   quarterlyData,
   recentReports,
   userRows,
-} from "../../assets/dashboardData";
+} from "./dashboardData";
 
 const statCards = [
   {

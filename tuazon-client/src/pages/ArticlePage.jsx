@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import articles from "../assets/article-content.js";
+import articles from "../data/article-content.js";
 
 const imageMap = {
   "preserving-gambia-fgm-law": "/src/assets/images/article1.avif",

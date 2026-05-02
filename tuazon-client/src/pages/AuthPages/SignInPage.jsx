@@ -41,7 +41,7 @@ const SignInPage = () => {
       // Redirect to dashboard after successful login
       console.log("Login successful, redirecting..."); // Debug
       setTimeout(() => {
-        navigate("/dashboard/");
+        navigate("/dashboard");
       }, 500);
     } else {
       setError(result.message);

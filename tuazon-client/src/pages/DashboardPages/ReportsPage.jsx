@@ -1,14 +1,15 @@
-import { Box, Card, CardContent, Chip, Stack, Typography } from "@mui/material";
-import InsightsOutlinedIcon from "@mui/icons-material/InsightsOutlined";
+import { useRef } from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { LineChart } from "@mui/x-charts/LineChart";
+import { Gauge } from "@mui/x-charts/Gauge";
 import { PieChart } from "@mui/x-charts/PieChart";
-import {
-  dashboardPalette,
-  deviceData,
-  monthlyTraffic,
-  regionData,
-} from "../../assets/dashboardData";
+import { DataGrid } from "@mui/x-data-grid";
+import { dashboardPalette } from "./dashboardData";
 
 const cardSx = {
   borderRadius: "24px",
@@ -17,7 +18,211 @@ const cardSx = {
   boxShadow: "0 16px 40px rgba(90, 42, 110, 0.08)",
 };
 
-function ReportsPage() {
+const buttonSx = {
+  borderRadius: "999px",
+  height: 36,
+  minHeight: 36,
+  maxHeight: 36,
+  px: 2,
+  py: 0,
+  fontSize: "0.72rem",
+  fontWeight: 700,
+  letterSpacing: "0.12em",
+  lineHeight: 1,
+  textTransform: "uppercase",
+  whiteSpace: "nowrap",
+};
+
+const outlinedButtonSx = {
+  ...buttonSx,
+  borderColor: dashboardPalette.lilac,
+  color: dashboardPalette.plum,
+  "&:hover": {
+    borderColor: dashboardPalette.rose,
+    backgroundColor: dashboardPalette.cream,
+  },
+};
+
+const dataGridSx = {
+  border: 0,
+  color: dashboardPalette.text,
+  "& .MuiDataGrid-columnHeaders": {
+    backgroundColor: dashboardPalette.cream,
+    color: dashboardPalette.plum,
+    fontWeight: 700,
+  },
+  "& .MuiDataGrid-columnHeaderTitle": {
+    fontWeight: 700,
+  },
+  "& .MuiDataGrid-cell, & .MuiDataGrid-columnHeader": {
+    outline: "none",
+  },
+  "& .MuiDataGrid-row:hover": {
+    backgroundColor: "#FCF8FD",
+  },
+  "& .MuiCheckbox-root.Mui-checked": {
+    color: dashboardPalette.plum,
+  },
+};
+
+const columns = [
+  { field: "id", headerName: "ID", width: 90 },
+  {
+    field: "firstName",
+    headerName: "First name",
+    width: 150,
+    editable: true,
+  },
+  {
+    field: "lastName",
+    headerName: "Last name",
+    width: 150,
+    editable: true,
+  },
+  {
+    field: "age",
+    headerName: "Age",
+    type: "number",
+    width: 110,
+    editable: true,
+  },
+  {
+    field: "fullName",
+    headerName: "Full name",
+    description: "This column has a value getter and is not sortable.",
+    sortable: false,
+    width: 160,
+    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
+  },
+];
+
+const rows = [
+  { id: 1, lastName: "Snow", firstName: "Jon", age: 14 },
+  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 31 },
+  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 31 },
+  { id: 4, lastName: "Stark", firstName: "Arya", age: 11 },
+  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: null },
+  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
+  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
+  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
+  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
+];
+
+const ReportsPage = () => {
+  const printRef = useRef(null);
+
+  const handlePrint = () => {
+    const printContent = printRef.current;
+
+    if (!printContent) {
+      return;
+    }
+
+    const printWindow = window.open("", "_blank", "width=1200,height=900");
+
+    if (!printWindow) {
+      return;
+    }
+
+    const headMarkup = Array.from(
+      document.querySelectorAll('style, link[rel="stylesheet"]'),
+    )
+      .map((node) => node.outerHTML)
+      .join("");
+
+    const exportedAt = new Intl.DateTimeFormat("en-US", {
+      dateStyle: "long",
+      timeStyle: "short",
+    }).format(new Date());
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Print Report</title>
+          ${headMarkup}
+          <style>
+            @page {
+              size: A4;
+              margin: 16mm;
+            }
+
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+              background: #fff;
+              color: #1f2937;
+            }
+
+            .report-shell {
+              padding: 28px;
+            }
+
+            .report-header {
+              margin-bottom: 24px;
+              padding-bottom: 14px;
+              border-bottom: 1px solid #d1d5db;
+            }
+
+            .report-header h1 {
+              margin: 0 0 6px;
+              font-size: 28px;
+              font-weight: 700;
+            }
+
+            .report-header p {
+              margin: 0;
+              font-size: 14px;
+              color: #6b7280;
+              line-height: 1.5;
+            }
+
+            .report-content .MuiCard-root {
+              box-shadow: none !important;
+              border: 1px solid #e5e7eb;
+              break-inside: avoid;
+              page-break-inside: avoid;
+            }
+
+            .report-content .MuiCardContent-root {
+              padding: 20px;
+            }
+
+            .report-content svg {
+              max-width: 100%;
+            }
+          </style>
+        </head>
+        <body>
+          <main class="report-shell">
+            <header class="report-header">
+              <h1>Reports Summary</h1>
+              <p>
+                Analytics overview for generated reports, category breakdown, and
+                completion performance.
+              </p>
+              <p>Prepared on ${exportedAt}</p>
+            </header>
+
+            <section class="report-content">
+              ${printContent.outerHTML}
+            </section>
+          </main>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+  };
+
   return (
     <Stack spacing={3}>
       <Card sx={{ ...cardSx, backgroundColor: dashboardPalette.cream }}>
@@ -25,10 +230,11 @@ function ReportsPage() {
           <Stack
             direction={{ xs: "column", md: "row" }}
             justifyContent="space-between"
-            alignItems={{ xs: "flex-start", md: "center" }}
-            spacing={2}
+            alignItems={{ xs: "stretch", md: "flex-start" }}
+            spacing={3}
+            sx={{ width: "100%" }}
           >
-            <Box>
+            <Box sx={{ flex: 1, minWidth: 0 }}>
               <Typography
                 sx={{
                   color: dashboardPalette.rose,
@@ -42,153 +248,224 @@ function ReportsPage() {
               </Typography>
               <Typography
                 variant="h4"
-                sx={{ mt: 1.5, color: dashboardPalette.plum, fontWeight: 700 }}
+                sx={{
+                  mt: 1.5,
+                  color: dashboardPalette.plum,
+                  fontWeight: 700,
+                }}
               >
-                Reports for monitoring awareness reach, campaign activity, and
-                engagement trends
+                Report analytics overview
               </Typography>
               <Typography
                 sx={{
                   mt: 2,
-                  color: dashboardPalette.text,
                   maxWidth: 720,
+                  color: dashboardPalette.text,
                   lineHeight: 1.8,
                 }}
               >
-                This page presents sample reporting visuals for the advocacy
-                platform, including audience reach, report generation, and
-                regional participation. The values are still demo data, but the
-                content is framed around how campaign performance could be
-                tracked in the actual system.
+                Track generated reports, category breakdowns, and completion
+                performance with the same advocacy dashboard styling.
               </Typography>
             </Box>
 
-            <Chip
-              icon={<InsightsOutlinedIcon />}
-              label="Visualization Ready"
+            <Stack
+              direction="row"
+              spacing={1.5}
+              flexWrap="wrap"
+              useFlexGap
+              justifyContent="flex-end"
               sx={{
-                px: 1,
-                backgroundColor: dashboardPalette.plum,
-                color: dashboardPalette.white,
-                "& .MuiChip-icon": { color: dashboardPalette.white },
-                fontWeight: 700,
+                width: { xs: "100%", md: "auto" },
+                ml: { md: "auto" },
+                flexShrink: 0,
               }}
-            />
+            >
+              <Button
+                variant="contained"
+                sx={{
+                  ...buttonSx,
+                  backgroundColor: dashboardPalette.plum,
+                  color: dashboardPalette.white,
+                  boxShadow: "0 10px 22px rgba(90, 42, 110, 0.2)",
+                  "&:hover": {
+                    backgroundColor: "#4B215D",
+                    boxShadow: "0 12px 26px rgba(90, 42, 110, 0.24)",
+                  },
+                }}
+              >
+                Generate
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={handlePrint}
+                sx={outlinedButtonSx}
+              >
+                Export
+              </Button>
+              <Button variant="outlined" sx={outlinedButtonSx}>
+                Filter
+              </Button>
+            </Stack>
           </Stack>
         </CardContent>
       </Card>
 
-      <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", xl: "1.3fr 0.9fr" },
-          gap: 3,
-        }}
-      >
+      <Stack ref={printRef} spacing={3}>
         <Card sx={cardSx}>
           <CardContent sx={{ p: 3 }}>
             <Typography
               variant="h6"
               sx={{ color: dashboardPalette.plum, fontWeight: 700 }}
             >
-              Monthly Reach and Report Activity
+              Monthly Report Output
             </Typography>
             <Typography
-              sx={{ mt: 1, color: dashboardPalette.text, opacity: 0.75 }}
+              sx={{ mt: 1, mb: 3, color: dashboardPalette.text, opacity: 0.75 }}
             >
-              Compares platform visits with generated advocacy reports over time
-              using sample values.
+              This chart compares how many reports were generated and how many
+              were completed across the last four months.
             </Typography>
-            <Box sx={{ mt: 3, overflowX: "auto" }}>
-              <LineChart
-                height={340}
-                dataset={monthlyTraffic}
-                xAxis={[{ dataKey: "month", scaleType: "point" }]}
-                series={[
-                  {
-                    dataKey: "visitors",
-                    label: "Audience Reach",
-                    color: dashboardPalette.plum,
-                  },
-                  {
-                    dataKey: "reports",
-                    label: "Reports Created",
-                    color: dashboardPalette.rose,
-                  },
-                ]}
-              />
-            </Box>
-          </CardContent>
-        </Card>
 
-        <Card sx={cardSx}>
-          <CardContent sx={{ p: 3 }}>
-            <Typography
-              variant="h6"
-              sx={{ color: dashboardPalette.plum, fontWeight: 700 }}
-            >
-              Access Channels
-            </Typography>
-            <Typography
-              sx={{ mt: 1, color: dashboardPalette.text, opacity: 0.75 }}
-            >
-              Shows how users may be accessing awareness resources across
-              devices.
-            </Typography>
-            <Box sx={{ mt: 3, display: "flex", justifyContent: "center" }}>
-              <PieChart
-                height={300}
-                colors={[
-                  dashboardPalette.plum,
-                  dashboardPalette.rose,
-                  dashboardPalette.lilac,
-                ]}
-                series={[
-                  {
-                    data: deviceData,
-                    innerRadius: 55,
-                    outerRadius: 105,
-                    cornerRadius: 6,
-                    paddingAngle: 3,
-                  },
-                ]}
-              />
-            </Box>
-          </CardContent>
-        </Card>
-      </Box>
-
-      <Card sx={cardSx}>
-        <CardContent sx={{ p: 3 }}>
-          <Typography
-            variant="h6"
-            sx={{ color: dashboardPalette.plum, fontWeight: 700 }}
-          >
-            Regional Participation Summary
-          </Typography>
-          <Typography
-            sx={{ mt: 1, color: dashboardPalette.text, opacity: 0.75 }}
-          >
-            Sample comparison of outreach participation across regions.
-          </Typography>
-          <Box sx={{ mt: 3, overflowX: "auto" }}>
             <BarChart
-              height={320}
-              dataset={regionData}
-              xAxis={[{ dataKey: "region", scaleType: "band" }]}
+              colors={[dashboardPalette.plum, dashboardPalette.rose]}
               series={[
+                { data: [18, 24, 20, 27], label: "Generated" },
+                { data: [12, 19, 17, 23], label: "Completed" },
+              ]}
+              height={300}
+              xAxis={[
                 {
-                  dataKey: "count",
-                  label: "Participants",
-                  color: dashboardPalette.rose,
+                  data: ["January", "February", "March", "April"],
+                  scaleType: "band",
+                  label: "Months",
                 },
               ]}
             />
-          </Box>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+
+        <Stack direction={{ xs: "column", lg: "row" }} spacing={3}>
+          <Card sx={{ ...cardSx, flex: 1 }}>
+            <CardContent sx={{ p: 3 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: dashboardPalette.plum, fontWeight: 700 }}
+              >
+                Report Category Share
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 1,
+                  mb: 3,
+                  color: dashboardPalette.text,
+                  opacity: 0.75,
+                }}
+              >
+                This chart shows the distribution of report requests by category
+                for the current reporting period.
+              </Typography>
+
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <PieChart
+                  colors={[
+                    dashboardPalette.plum,
+                    dashboardPalette.rose,
+                    dashboardPalette.lilac,
+                    dashboardPalette.cream,
+                  ]}
+                  series={[
+                    {
+                      data: [
+                        { id: 0, value: 14, label: "Sales" },
+                        { id: 1, value: 10, label: "Users" },
+                        { id: 2, value: 8, label: "Inventory" },
+                        { id: 3, value: 6, label: "Finance" },
+                      ],
+                    },
+                  ]}
+                  width={280}
+                  height={220}
+                />
+              </Box>
+            </CardContent>
+          </Card>
+
+          <Card sx={{ ...cardSx, flex: 1 }}>
+            <CardContent sx={{ p: 3 }}>
+              <Typography
+                variant="h6"
+                sx={{ color: dashboardPalette.plum, fontWeight: 700 }}
+              >
+                Completion Rate
+              </Typography>
+
+              <Typography
+                sx={{
+                  mt: 1,
+                  mb: 3,
+                  color: dashboardPalette.text,
+                  opacity: 0.75,
+                }}
+              >
+                The gauge highlights the current percentage of reports completed
+                on time based on the latest reporting cycle.
+              </Typography>
+
+              <Box
+                sx={{
+                  minHeight: 220,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Gauge
+                  width={180}
+                  height={180}
+                  value={78}
+                  sx={{
+                    "& .MuiGauge-valueArc": {
+                      fill: dashboardPalette.plum,
+                    },
+                    "& .MuiGauge-referenceArc": {
+                      fill: dashboardPalette.lilac,
+                    },
+                    "& .MuiGauge-valueText": {
+                      fill: dashboardPalette.plum,
+                      fontWeight: 700,
+                    },
+                  }}
+                />
+              </Box>
+            </CardContent>
+          </Card>
+        </Stack>
+
+        <Card sx={cardSx}>
+          <CardContent sx={{ p: 3 }}>
+            <DataGrid
+              rows={rows}
+              columns={columns}
+              experimentalFeatures={{ newEditingApi: true }}
+              initialState={{
+                pagination: {
+                  paginationModel: {
+                    pageSize: 5,
+                  },
+                },
+              }}
+              pageSizeOptions={[5]}
+              checkboxSelection
+              disableRowSelectionOnClick
+              sx={dataGridSx}
+            />
+          </CardContent>
+        </Card>
+      </Stack>
     </Stack>
   );
-}
+};
 
 export default ReportsPage;
