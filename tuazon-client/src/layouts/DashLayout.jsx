@@ -25,7 +25,7 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import Button from "@mui/material/Button";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import ListItemButton from "@mui/material/ListItemButton";
-import { dashboardPalette } from "../pages/DashboardPages/dashboardData";
+import { dashboardPalette } from "../data/dashboardData";
 
 const drawerWidth = 240;
 const dashboardNavItems = [

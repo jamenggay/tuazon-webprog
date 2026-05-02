@@ -25,7 +25,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { DataGrid } from "@mui/x-data-grid";
 import usersSeed from "../../data/users.json?raw";
-import { dashboardPalette } from "./dashboardData";
+import { dashboardPalette } from "../../data/dashboardData";
 
 const roles = ["admin", "editor", "viewer"];
 const genders = ["male", "female", "other"];

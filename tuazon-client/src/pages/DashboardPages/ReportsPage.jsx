@@ -9,7 +9,7 @@ import { BarChart } from "@mui/x-charts/BarChart";
 import { Gauge } from "@mui/x-charts/Gauge";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { DataGrid } from "@mui/x-data-grid";
-import { dashboardPalette } from "./dashboardData";
+import { dashboardPalette } from "../../data/dashboardData";
 
 const cardSx = {
   borderRadius: "24px",

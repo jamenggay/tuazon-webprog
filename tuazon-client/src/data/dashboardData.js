@@ -19,22 +19,22 @@ export const userRows = [
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65, role: "Analyst", status: "Active", email: "roxie.harvey@example.com" },
 ];
 
-export const userColumns = [
-  { field: "id", headerName: "ID", width: 80 },
-  { field: "firstName", headerName: "First Name", width: 140, editable: true },
-  { field: "lastName", headerName: "Last Name", width: 140, editable: true },
-  { field: "age", headerName: "Age", type: "number", width: 90, editable: true },
-  { field: "role", headerName: "Role", width: 130, editable: true },
-  { field: "status", headerName: "Status", width: 120, editable: true },
-  { field: "email", headerName: "Email", width: 260, editable: true },
-  {
-    field: "fullName",
-    headerName: "Full Name",
-    sortable: false,
-    width: 180,
-    valueGetter: (_, row) => `${row.firstName || ""} ${row.lastName || ""}`.trim(),
-  },
-];
+// export const userColumns = [
+//   { field: "id", headerName: "ID", width: 80 },
+//   { field: "firstName", headerName: "First Name", width: 140, editable: true },
+//   { field: "lastName", headerName: "Last Name", width: 140, editable: true },
+//   { field: "age", headerName: "Age", type: "number", width: 90, editable: true },
+//   { field: "role", headerName: "Role", width: 130, editable: true },
+//   { field: "status", headerName: "Status", width: 120, editable: true },
+//   { field: "email", headerName: "Email", width: 260, editable: true },
+//   {
+//     field: "fullName",
+//     headerName: "Full Name",
+//     sortable: false,
+//     width: 180,
+//     valueGetter: (_, row) => `${row.firstName || ""} ${row.lastName || ""}`.trim(),
+//   },
+// ];
 
 export const quarterlyData = [
   { quarter: "Q1", active: 4000, archived: 2400 },
