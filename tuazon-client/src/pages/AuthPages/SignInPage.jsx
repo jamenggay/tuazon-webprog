@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { login } from "../../utils/auth";
+import { loginUser } from "../../../UserService";
 
 const inputClasses =
   "mt-2 w-full rounded-2xl border border-[#D6C6E1] bg-white px-4 py-3 text-sm text-[#2E2E2E] outline-none transition placeholder:text-[#C97B84] focus:border-[#5A2A6E] focus:ring-2 focus:ring-[#5A2A6E]";
@@ -12,40 +12,37 @@ const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
 
-    console.log("Form submitted with:", { email, password }); // Debug
+    try {
+      const { data } = await loginUser({ email, password });
+      console.log("Login successful", data);
 
-    // Validate inputs
-    if (!email || !password) {
-      setError("Please fill in all fields");
-      setLoading(false);
-      return;
-    }
+      if (String(data.type).toLowerCase() === "viewer") {
+        setError("Viewers cannot log in.");
+        return;
+      }
 
-    // Attempt login
-    const result = login(email, password);
-    console.log("Login result:", result); // Debug
-    console.log(
-      "localStorage auth state:",
-      localStorage.getItem("isAuthenticated"),
-    ); // Debug
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("firstName", data.firstName);
+      localStorage.setItem("type", data.type);
 
-    if (result.success) {
-      // Redirect to dashboard after successful login
-      console.log("Login successful, redirecting..."); // Debug
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 500);
-    } else {
-      setError(result.message);
-      setLoading(false);
+      navigate("/dashboard", {
+        state: {
+          firstName: data.firstName,
+          type: data.type,
+        },
+      });
+    } catch (err) {
+      console.error(
+        "Login failed:",
+        err.response?.data?.message || err.message,
+      );
+
+      setError(err.response?.data?.message || "Login failed. Please try again.");
     }
   };
 
@@ -55,8 +52,7 @@ const SignInPage = () => {
         Log In
       </h1>
       <p className="mt-3 text-sm leading-6 text-zinc-200">
-        Access your account using the same monochrome wireframe language used
-        across the site
+        Welcome back! Log In to continue your journey with us!
       </p>
 
       {/* Error Message */}
@@ -82,6 +78,7 @@ const SignInPage = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={inputClasses}
+            required
           />
         </div>
 
@@ -100,6 +97,7 @@ const SignInPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className={inputClasses}
+            required
           />
         </div>
 
@@ -121,14 +119,9 @@ const SignInPage = () => {
 
         <button
           type="submit"
-          disabled={loading}
-          className={`${actionButtonClassName} w-full rounded-2xl py-3 text-[11px] font-semibold uppercase tracking-[0.2em] ${
-            loading
-              ? "bg-gray-400 text-gray-600 cursor-not-allowed"
-              : "bg-[#F8E1FF] text-[#5A2A6E] hover:bg-[#d89cf5]"
-          } transition-colors`}
+          className={`${actionButtonClassName} bg-[#F8E1FF] text-[#5A2A6E] transition-colors hover:bg-[#d89cf5]`}
         >
-          {loading ? "Logging In..." : "Log In"}
+          Log In
         </button>
         {/* Social Buttons */}
         <div className="grid gap-3 sm:grid-cols-2 mt-4">

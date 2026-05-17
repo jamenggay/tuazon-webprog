@@ -22,6 +22,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
 import AssessmentIcon from "@mui/icons-material/Assessment";
+import ArticleIcon from "@mui/icons-material/Article";
 import Button from "@mui/material/Button";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -42,10 +43,17 @@ const dashboardNavItems = [
     icon: AssessmentIcon,
   },
   {
+    label: "Articles",
+    title: "Articles",
+    to: "/dashboard/articles",
+    icon: ArticleIcon,
+  },
+  {
     label: "Users",
     title: "Users",
     to: "/dashboard/users",
     icon: PeopleIcon,
+    allowedTypes: ["admin"],
   },
 ];
 
@@ -165,6 +173,7 @@ const DashLayout = () => {
   const location = useLocation();
   const pageTitle = getPageTitle(location.pathname);
   const navigate = useNavigate();
+  const userType = localStorage.getItem("type");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -267,7 +276,12 @@ const DashLayout = () => {
           <Divider />
           {/* // DrawerList */}
           <List>
-            {dashboardNavItems.map((item) => {
+            {dashboardNavItems
+              .filter(
+                (item) =>
+                  !item.allowedTypes || item.allowedTypes.includes(userType),
+              )
+              .map((item) => {
               const NavIcon = item.icon;
 
               return (

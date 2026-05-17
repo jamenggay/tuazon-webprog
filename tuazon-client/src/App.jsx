@@ -15,6 +15,7 @@ import SignUpPage from "./pages/AuthPages/SignUpPage";
 import DashboardPage from "./pages/DashboardPages/DashboardPage";
 import ReportsPage from "./pages/DashboardPages/ReportsPage";
 import UsersPage from "./pages/DashboardPages/UsersPage";
+import DashArticleListPage from "./pages/DashboardPages/DashArticleListPage";
 
 const routes = [
   {
@@ -74,8 +75,16 @@ const routes = [
         element: <ReportsPage />,
       },
       {
+        path: "articles",
+        element: <DashArticleListPage />,
+      },
+      {
         path: "users",
-        element: <UsersPage />,
+        element: (
+          <ProtectedRoute allowedTypes={["admin"]}>
+            <UsersPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

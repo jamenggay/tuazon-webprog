@@ -12,6 +12,8 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import EqualizerOutlinedIcon from "@mui/icons-material/EqualizerOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import OpenInNewOutlinedIcon from "@mui/icons-material/OpenInNewOutlined";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { PieChart } from "@mui/x-charts/PieChart";
 import {
@@ -54,6 +56,15 @@ const cardSx = {
   border: `1px solid ${dashboardPalette.lilac}`,
   backgroundColor: dashboardPalette.white,
   boxShadow: "0 16px 40px rgba(90, 42, 110, 0.08)",
+};
+
+const locationMap = {
+  title: "Location Map",
+  address: "Metro Manila, Philippines",
+  embedUrl:
+    "https://www.openstreetmap.org/export/embed.html?bbox=120.887695%2C14.350341%2C121.135575%2C14.798328&layer=mapnik&marker=14.604253%2C120.994314",
+  viewUrl:
+    "https://www.openstreetmap.org/?mlat=14.604253&mlon=120.994314#map=16/14.604253/120.994314",
 };
 
 function DashboardPage() {
@@ -166,6 +177,78 @@ function DashboardPage() {
           </Card>
         ))}
       </Box>
+
+      <Card sx={cardSx}>
+        <CardContent sx={{ p: 3 }}>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={2}
+            justifyContent="space-between"
+            alignItems={{ xs: "flex-start", md: "center" }}
+            sx={{ mb: 2.5 }}
+          >
+            <Box>
+              <Typography
+                variant="h6"
+                sx={{ color: dashboardPalette.plum, fontWeight: 700 }}
+              >
+                {locationMap.title}
+              </Typography>
+              <Stack
+                direction="row"
+                spacing={1}
+                alignItems="center"
+                sx={{ mt: 1, color: dashboardPalette.text, opacity: 0.75 }}
+              >
+                <LocationOnOutlinedIcon fontSize="small" />
+                <Typography>{locationMap.address}</Typography>
+              </Stack>
+            </Box>
+
+            <Chip
+              component="a"
+              href={locationMap.viewUrl}
+              target="_blank"
+              rel="noreferrer"
+              clickable
+              icon={<OpenInNewOutlinedIcon />}
+              label="Open map"
+              sx={{
+                backgroundColor: dashboardPalette.cream,
+                color: dashboardPalette.plum,
+                fontWeight: 700,
+                "& .MuiChip-icon": {
+                  color: dashboardPalette.plum,
+                },
+              }}
+            />
+          </Stack>
+
+          <Box
+            sx={{
+              height: { xs: 300, md: 380 },
+              overflow: "hidden",
+              borderRadius: "18px",
+              border: `1px solid ${dashboardPalette.lilac}`,
+              backgroundColor: dashboardPalette.cream,
+            }}
+          >
+            <Box
+              component="iframe"
+              title={locationMap.title}
+              src={locationMap.embedUrl}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              sx={{
+                display: "block",
+                width: "100%",
+                height: "100%",
+                border: 0,
+              }}
+            />
+          </Box>
+        </CardContent>
+      </Card>
 
       <Box
         sx={{

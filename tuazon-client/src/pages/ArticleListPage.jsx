@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import ArticleList from "../components/ArticleList";
-import articles from "../data/article-content.js";
+import { getArticles } from "../utils/articles";
+
 const ArticleListPage = () => {
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    setArticles(getArticles());
+  }, []);
+
   return (
    <div className="flex w-full flex-col gap-6 bg-[#F5EDE6]">
   <section

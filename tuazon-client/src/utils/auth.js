@@ -55,6 +55,9 @@ export const login = (email, password) => {
 export const logout = () => {
   localStorage.removeItem("user");
   localStorage.removeItem("isAuthenticated");
+  localStorage.removeItem("token");
+  localStorage.removeItem("firstName");
+  localStorage.removeItem("type");
 };
 
 // Get current user
@@ -65,5 +68,8 @@ export const getCurrentUser = () => {
 
 // Check if user is authenticated
 export const isAuthenticated = () => {
-  return localStorage.getItem("isAuthenticated") === "true";
+  return (
+    localStorage.getItem("isAuthenticated") === "true" ||
+    Boolean(localStorage.getItem("token"))
+  );
 };

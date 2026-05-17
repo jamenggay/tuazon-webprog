@@ -21,7 +21,7 @@ const ArticleList = ({ articles }) => {
         >
           <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-[#F5EDE6] overflow-hidden">
             <img
-              src={imageMap[article.name]}
+              src={imageMap[article.name] || "/src/assets/images/hero.png"}
               alt={article.title}
               className="w-full h-full object-cover object-top rounded-[1.25rem]"
             />

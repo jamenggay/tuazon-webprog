@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import articles from "../data/article-content.js";
+import { getArticles } from "../utils/articles";
 
 const imageMap = {
   "preserving-gambia-fgm-law": "/src/assets/images/article1.avif",
@@ -15,6 +16,7 @@ const imageMap = {
 function ArticlePage() {
   const navigate = useNavigate();
   const { name } = useParams();
+  const [articles] = useState(getArticles());
   const article = articles.find((article) => article.name === name);
 
   if (!article) {
@@ -65,7 +67,7 @@ function ArticlePage() {
         <div className="mx-auto max-w-3xl">
           <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-[#D6C6E1] mb-8 overflow-hidden">
             <img
-              src={imageMap[article.name]}
+              src={imageMap[article.name] || "/src/assets/images/hero.png"}
               alt={article.title}
               className="w-full h-full object-cover object-top rounded-[1.25rem]"
             />
