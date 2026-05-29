@@ -2,15 +2,23 @@ import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import { getArticles } from "../utils/articles";
+import article1Img from "../assets/images/article1.avif";
+import article2Img from "../assets/images/article2.jpg";
+import article3Img from "../assets/images/article3.jpg";
+import article4Img from "../assets/images/article4.jpg";
+import keytopic1Img from "../assets/images/keytopic1.png";
+import keytopics2Img from "../assets/images/keytopics2.jpeg";
+import keytopic3Img from "../assets/images/keytopic3.webp";
+import heroImg from "../assets/images/hero.png";
 
 const imageMap = {
-  "preserving-gambia-fgm-law": "/src/assets/images/article1.avif",
-  "fgm-global-concern": "/src/assets/images/article2.jpg",
-  "gambia-fgm-ban-debate": "/src/assets/images/article3.jpg",
-  "gambia-overturn-ban-fgm": "/src/assets/images/article4.jpg",
-  "what-is-fgm": "/src/assets/images/keytopic1.png",
-  "health-effects-fgm": "/src/assets/images/keytopics2.jpeg",
-  "take-action-fgm": "/src/assets/images/keytopic3.webp",
+  "preserving-gambia-fgm-law": article1Img,
+  "fgm-global-concern": article2Img,
+  "gambia-fgm-ban-debate": article3Img,
+  "gambia-overturn-ban-fgm": article4Img,
+  "what-is-fgm": keytopic1Img,
+  "health-effects-fgm": keytopics2Img,
+  "take-action-fgm": keytopic3Img,
 };
 
 function ArticlePage() {
@@ -67,7 +75,7 @@ function ArticlePage() {
         <div className="mx-auto max-w-3xl">
           <div className="flex aspect-[4/3] items-center justify-center rounded-[1.25rem] bg-[#D6C6E1] mb-8 overflow-hidden">
             <img
-              src={imageMap[article.name] || "/src/assets/images/hero.png"}
+              src={imageMap[article.name] || heroImg}
               alt={article.title}
               className="w-full h-full object-cover object-top rounded-[1.25rem]"
             />

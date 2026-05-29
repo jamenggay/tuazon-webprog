@@ -1,4 +1,9 @@
 import Button from "../components/Button";
+import aboutImg from "../assets/images/about.png";
+import about1Img from "../assets/images/about1.png";
+import about2Img from "../assets/images/about2.png";
+import about3Img from "../assets/images/about3.png";
+import about3JpgImg from "../assets/images/about3.jpg";
 
 const AboutPage = () => {
   return (
@@ -9,7 +14,7 @@ const AboutPage = () => {
           <div className="rounded-3xl border border-[#D6C6E1] bg-[#D6C6E1] p-6">
             <div className="flex min-h-72 items-center justify-center rounded-[1.25rem] bg-[#F5EDE6]">
               <img
-                src="/src/assets/images/about.png"
+                src={aboutImg}
                 style={{ borderRadius: "1.25rem" }}
               />
             </div>
@@ -194,28 +199,28 @@ const AboutPage = () => {
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-[#F5EDE6] overflow-hidden">
                 <img
-                  src="/src/assets/images/about1.png"
+                  src={about1Img}
                   alt="about 1"
                   className="w-full h-full object-cover object-top rounded-[1.25rem]"
                 />
               </div>
               <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-[#F5EDE6] overflow-hidden">
                 <img
-                  src="/src/assets/images/about2.png"
+                  src={about2Img}
                   alt="about 2"
                   className="w-full h-full object-cover object-top rounded-[1.25rem]"
                 />
               </div>
               <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-[#F5EDE6] overflow-hidden">
                 <img
-                  src="/src/assets/images/about3.png"
+                  src={about3Img}
                   alt="about 3"
                   className="w-full h-full object-cover object-top rounded-[1.25rem]"
                 />
               </div>
               <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-[#F5EDE6] overflow-hidden">
                 <img
-                  src="/src/assets/images/about3.jpg"
+                  src={about3JpgImg}
                   alt="about 4"
                   className="w-full h-full object-cover object-top rounded-[1.25rem]"
                 />

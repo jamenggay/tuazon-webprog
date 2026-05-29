@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import signupImg from "../assets/images/signup.jpg";
 
 const AuthLayout = () => {
   return (
@@ -8,7 +9,7 @@ const AuthLayout = () => {
         <div className="relative flex items-center justify-center overflow-hidden bg-[#5A2A6E] px-6 py-10 sm:px-12 lg:px-16">
           <img
             className="absolute inset-0 h-full w-full object-cover object-center opacity-70"
-            src="/src/assets/images/signup.jpg"
+            src={signupImg}
             alt="Community support"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[#321849]/90 via-transparent to-[#1b0d33]/80" />

@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import logoImg from "../assets/images/logo.png";
 
 const links = [
   { label: "Home", to: "/" },
@@ -21,7 +22,7 @@ const NavBar = () => {
         <NavLink to="/" className="flex items-center gap-3">
           <div className="space-y-0.5">
             <img
-              src="/src/assets/images/logo.png"
+              src={logoImg}
               alt="kavira logo"
               style={{ width: "100px", height: "50px" }}
             />

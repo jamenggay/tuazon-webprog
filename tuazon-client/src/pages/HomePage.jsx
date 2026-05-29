@@ -1,5 +1,9 @@
 import Button from "../components/Button";
 import articles from "../data/article-content.js";
+import heroImg from "../assets/images/hero.png";
+import keytopic1Img from "../assets/images/keytopic1.png";
+import keytopics2Img from "../assets/images/keytopics2.jpeg";
+import keytopic3Img from "../assets/images/keytopic3.webp";
 
 const HomePage = () => {
   const learnMoreArticles = articles.filter((article) =>
@@ -9,9 +13,9 @@ const HomePage = () => {
   );
 
   const learnMoreImages = [
-    "/src/assets/images/keytopic1.png",
-    "/src/assets/images/keytopics2.jpeg",
-    "/src/assets/images/keytopic3.webp",
+    keytopic1Img,
+    keytopics2Img,
+    keytopic3Img,
   ];
 
   return (
@@ -41,7 +45,7 @@ const HomePage = () => {
           <div className="rounded-3xl border border-[#D6C6E1] bg-[#D6C6E1] p-6">
             <div className="flex min-h-[65px] items-center justify-center rounded-[1.25rem] bg-[#F5EDE6]">
               <img
-                src="/src/assets/images/hero.png"
+                src={heroImg}
                 style={{ width: "750px", height: "200px" }}
               />
             </div>

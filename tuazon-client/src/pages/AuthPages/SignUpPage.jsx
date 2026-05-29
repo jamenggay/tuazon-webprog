@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import { createUser, loginUser } from "../../../UserService";
+import googleLogoImg from "../../assets/icon/google-logo.png";
+import githubLogoImg from "../../assets/icon/github-logo..png";
 
 const inputClasses =
   "mt-2 w-full rounded-2xl border border-[#D6C6E1] bg-white px-4 py-3 text-sm text-[#2E2E2E] outline-none transition placeholder:text-[#C97B84] focus:border-[#5A2A6E] focus:ring-2 focus:ring-[#5A2A6E]";
@@ -229,7 +231,7 @@ const SignUpPage = () => {
           <a href="#" className="block">
             <button className="w-full text-sm text-center hover:bg-[#d89cf5] transition-colors py-3 border flex items-center justify-center border-slate-200 rounded-[30px] text-white hover:border-slate-400 hover:text-white hover:shadow transition duration-150">
               <img
-                src="/src/assets/icon/google-logo.png"
+                src={googleLogoImg}
                 className="w-4 h-4 mr-2"
                 alt="Google Icon"
               />
@@ -240,7 +242,7 @@ const SignUpPage = () => {
           <a href="#" className="block">
             <button className="w-full text-sm text-center  hover:bg-[#d89cf5] transition-colors py-3 border flex items-center justify-center border-slate-200 rounded-[30px] text-white hover:border-slate-400 hover:text-white hover:shadow transition duration-150">
               <img
-                src="/src/assets/icon/github-logo..png"
+                src={githubLogoImg}
                 className="w-7 h-5 mr-1"
                 alt="Github Icon"
               />
